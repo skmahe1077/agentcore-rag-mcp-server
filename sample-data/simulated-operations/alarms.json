@@ -1,0 +1,63 @@
+[
+  {
+    "alarm_name": "checkout-http-5xx-high",
+    "service": "checkout",
+    "environment": "production",
+    "alarm_state": "ALARM",
+    "metric": "HTTPCode_Target_5XX_Count",
+    "threshold": 50,
+    "evaluation_period": 300,
+    "state_reason": "Threshold Crossed: 3 datapoints [147.0, 132.0, 98.0] were greater than the threshold (50.0).",
+    "transition_time": "2026-09-18T09:42:11Z",
+    "dimensions": {
+      "LoadBalancer": "app/checkout-alb/1a2b3c4d5e6f7890",
+      "TargetGroup": "targetgroup/checkout-tg/0987fedcba654321"
+    },
+    "simulated": true
+  },
+  {
+    "alarm_name": "checkout-rds-connections-high",
+    "service": "checkout",
+    "environment": "production",
+    "alarm_state": "ALARM",
+    "metric": "DatabaseConnections",
+    "threshold": 180,
+    "evaluation_period": 300,
+    "state_reason": "Threshold Crossed: 2 datapoints [196.0, 201.0] were greater than the threshold (180.0).",
+    "transition_time": "2026-09-18T09:38:47Z",
+    "dimensions": {
+      "DBInstanceIdentifier": "checkout-db-prod"
+    },
+    "simulated": true
+  },
+  {
+    "alarm_name": "checkout-ec2-cpu-high",
+    "service": "checkout",
+    "environment": "production",
+    "alarm_state": "OK",
+    "metric": "CPUUtilization",
+    "threshold": 85,
+    "evaluation_period": 300,
+    "state_reason": "Threshold Crossed: 1 datapoint [41.2] was not greater than the threshold (85.0).",
+    "transition_time": "2026-09-18T06:15:03Z",
+    "dimensions": {
+      "AutoScalingGroupName": "checkout-asg-prod"
+    },
+    "simulated": true
+  },
+  {
+    "alarm_name": "checkout-lambda-error-rate",
+    "service": "checkout",
+    "environment": "production",
+    "alarm_state": "INSUFFICIENT_DATA",
+    "metric": "Errors",
+    "threshold": 10,
+    "evaluation_period": 300,
+    "state_reason": "Insufficient data available for the metric.",
+    "transition_time": "2026-09-18T04:02:19Z",
+    "dimensions": {
+      "FunctionName": "checkout-price-calculator"
+    },
+    "simulated": true
+  }
+]

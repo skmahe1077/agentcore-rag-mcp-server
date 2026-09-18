@@ -1,0 +1,34 @@
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.*
+terraform/*.tfplan
+terraform/terraform.tfvars
+terraform/backend.tf
+terraform/crash.log
+terraform/crash.*.log
+
+# Build artifacts (Lambda layer, zips) - rebuilt by scripts/build_lambda_packages.sh
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Demo credentials - never commit
+.demo-token-*
+.env
+
+# Editor/OS
+.DS_Store
+.vscode/
+.idea/
+*.swp

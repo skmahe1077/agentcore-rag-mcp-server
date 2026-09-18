@@ -1,0 +1,14 @@
+[
+  {
+    "user_id": "demo-read-only-operator",
+    "role": "read_only_operator",
+    "display_name": "Read-Only Operator (Demo)",
+    "email": "demo-read-only-operator@example.invalid"
+  },
+  {
+    "user_id": "demo-incident-commander",
+    "role": "incident_commander",
+    "display_name": "Incident Commander (Demo)",
+    "email": "demo-incident-commander@example.invalid"
+  }
+]

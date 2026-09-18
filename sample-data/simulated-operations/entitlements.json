@@ -1,0 +1,74 @@
+[
+  {
+    "role": "read_only_operator",
+    "permitted_environments": ["production", "staging"],
+    "permitted_tools": [
+      "check_operator_permissions",
+      "search_runbooks",
+      "get_alarm_details",
+      "get_resource_status",
+      "get_recent_events",
+      "submit_feedback"
+    ],
+    "permitted_classifications": ["public", "internal"],
+    "can_write": false
+  },
+  {
+    "role": "cloud_engineer",
+    "permitted_environments": ["production", "staging"],
+    "permitted_tools": [
+      "check_operator_permissions",
+      "search_runbooks",
+      "get_alarm_details",
+      "get_resource_status",
+      "get_recent_events",
+      "submit_feedback"
+    ],
+    "permitted_classifications": ["public", "internal"],
+    "can_write": false
+  },
+  {
+    "role": "application_engineer",
+    "permitted_environments": ["production", "staging"],
+    "permitted_tools": [
+      "check_operator_permissions",
+      "search_runbooks",
+      "get_alarm_details",
+      "get_resource_status",
+      "get_recent_events",
+      "submit_feedback"
+    ],
+    "permitted_classifications": ["public", "internal"],
+    "can_write": false
+  },
+  {
+    "role": "incident_commander",
+    "permitted_environments": ["production", "staging"],
+    "permitted_tools": [
+      "check_operator_permissions",
+      "search_runbooks",
+      "get_alarm_details",
+      "get_resource_status",
+      "get_recent_events",
+      "create_incident_record",
+      "submit_feedback"
+    ],
+    "permitted_classifications": ["public", "internal", "restricted"],
+    "can_write": true
+  },
+  {
+    "role": "administrator",
+    "permitted_environments": ["production", "staging"],
+    "permitted_tools": [
+      "check_operator_permissions",
+      "search_runbooks",
+      "get_alarm_details",
+      "get_resource_status",
+      "get_recent_events",
+      "create_incident_record",
+      "submit_feedback"
+    ],
+    "permitted_classifications": ["public", "internal", "restricted"],
+    "can_write": true
+  }
+]

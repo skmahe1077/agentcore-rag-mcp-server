@@ -1,0 +1,47 @@
+[
+  {
+    "service": "checkout",
+    "environment": "production",
+    "event_type": "deployment",
+    "description": "Application deployment completed: checkout-service v2026.09.18-3 (rolling deployment, all targets replaced).",
+    "timestamp": "2026-09-18T09:30:02Z",
+    "source": "deployment-pipeline",
+    "simulated": true
+  },
+  {
+    "service": "checkout",
+    "environment": "production",
+    "event_type": "dependency_incident",
+    "description": "Database platform team acknowledged elevated connection counts on checkout-db-prod; investigating connection pool configuration in the v2026.09.18-3 release.",
+    "timestamp": "2026-09-18T09:47:30Z",
+    "source": "incident-chat",
+    "simulated": true
+  },
+  {
+    "service": "checkout",
+    "environment": "production",
+    "event_type": "alarm_state_change",
+    "description": "checkout-http-5xx-high transitioned to ALARM.",
+    "timestamp": "2026-09-18T09:42:11Z",
+    "source": "cloudwatch",
+    "simulated": true
+  },
+  {
+    "service": "checkout",
+    "environment": "production",
+    "event_type": "alarm_state_change",
+    "description": "checkout-rds-connections-high transitioned to ALARM.",
+    "timestamp": "2026-09-18T09:38:47Z",
+    "source": "cloudwatch",
+    "simulated": true
+  },
+  {
+    "service": "checkout",
+    "environment": "staging",
+    "event_type": "deployment",
+    "description": "Application deployment completed: checkout-service v2026.09.18-3 (staging validation, no incidents observed).",
+    "timestamp": "2026-09-17T15:12:44Z",
+    "source": "deployment-pipeline",
+    "simulated": true
+  }
+]

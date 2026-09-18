@@ -1,0 +1,38 @@
+# Copy to terraform.tfvars and adjust. Do not commit terraform.tfvars - it is
+# gitignored, but double-check before committing since it can carry
+# account-specific values such as an alert email address.
+
+aws_region   = "eu-west-1"
+project_name = "cloud-operations-runbook-assistant"
+environment  = "demo"
+cost_profile = "demo"
+
+vector_store_backend         = "s3_vectors"
+enable_opensearch_serverless = false
+
+# Confirm Bedrock model access and the exact model/inference-profile ID for
+# your account in the Bedrock console (Model access page) before setting
+# these. eu-west-1 typically requires an EU cross-region inference profile
+# for cost-effective chat models; embeddings are available in-region.
+foundation_model_id = "eu.anthropic.claude-haiku-4-5-20251001-v1:0"
+embedding_model_id  = "amazon.titan-embed-text-v2:0"
+embedding_dimensions = 1024
+
+max_output_tokens   = 4096
+retrieval_results   = 4
+maximum_tool_calls  = 8
+maximum_agent_steps = 10
+
+use_simulated_operational_data = true
+enable_live_aws_diagnostics    = false
+
+use_customer_managed_kms   = false
+enable_deletion_protection = false
+
+cloudwatch_log_retention_days = 7
+trace_sampling_percentage     = 10
+enable_debug_logging          = false
+enable_detailed_metrics       = false
+
+monthly_budget_limit = 20
+budget_alert_email   = "skmahe1077@gmail.com"

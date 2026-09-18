@@ -1,0 +1,8 @@
+# Lean dependency set for the 7 Lambda-backed MCP tools (lambda-tools.tf).
+# Deliberately excludes app/agent's heavier dependencies (strands-agents,
+# bedrock-agentcore, cryptography) - the tools never need them, and keeping
+# this set small keeps Lambda cold starts and package size down.
+
+boto3==1.43.97
+botocore==1.43.97
+pydantic==2.13.5

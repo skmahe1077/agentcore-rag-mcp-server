@@ -1,0 +1,25 @@
+# Copy to backend.tf and fill in account-specific values to enable remote
+# state. An S3 backend with a DynamoDB (or S3-native) lock is the standard,
+# secure choice: encrypted at rest, versioned, and access-controlled via IAM,
+# instead of local state files that can leak secrets or be lost.
+#
+# Create the state bucket and lock table out of band (they must exist before
+# `terraform init -backend-config=...` can use them), e.g.:
+#   aws s3api create-bucket --bucket <your-tfstate-bucket> --region eu-west-1 \
+#     --create-bucket-configuration LocationConstraint=eu-west-1
+#   aws s3api put-bucket-versioning --bucket <your-tfstate-bucket> \
+#     --versioning-configuration Status=Enabled
+#   aws s3api put-bucket-encryption --bucket <your-tfstate-bucket> \
+#     --server-side-encryption-configuration '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"aws:kms"}}]}'
+#   aws s3api put-public-access-block --bucket <your-tfstate-bucket> \
+#     --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+
+terraform {
+  backend "s3" {
+    bucket       = "<your-tfstate-bucket>"
+    key          = "cloud-operations-runbook-assistant/demo/terraform.tfstate"
+    region       = "eu-west-1"
+    encrypt      = true
+    use_lockfile = true # S3-native locking (Terraform >= 1.10); avoids a separate DynamoDB lock table
+  }
+}

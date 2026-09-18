@@ -1,0 +1,69 @@
+[
+  {
+    "resource_type": "application_load_balancer",
+    "resource_identifier": "checkout-alb",
+    "service": "checkout",
+    "environment": "production",
+    "state": "active",
+    "http_5xx_count": 147,
+    "http_4xx_count": 12,
+    "request_count": 8420,
+    "simulated": true
+  },
+  {
+    "resource_type": "target_group",
+    "resource_identifier": "checkout-tg",
+    "service": "checkout",
+    "environment": "production",
+    "state": "active",
+    "healthy_targets": 1,
+    "unhealthy_targets": 2,
+    "target_count": 3,
+    "simulated": true
+  },
+  {
+    "resource_type": "rds_database",
+    "resource_identifier": "checkout-db-prod",
+    "service": "checkout",
+    "environment": "production",
+    "state": "available",
+    "database_connections": 198,
+    "max_connections": 200,
+    "replica_lag_seconds": 0,
+    "dependency_status": "database connection failures detected",
+    "simulated": true
+  },
+  {
+    "resource_type": "auto_scaling_group",
+    "resource_identifier": "checkout-asg-prod",
+    "service": "checkout",
+    "environment": "production",
+    "state": "in_service",
+    "desired_capacity": 3,
+    "min_size": 2,
+    "max_size": 6,
+    "in_service_instances": 3,
+    "simulated": true
+  },
+  {
+    "resource_type": "ec2_instance",
+    "resource_identifier": "i-0a1b2c3d4e5f67890",
+    "service": "checkout",
+    "environment": "production",
+    "state": "running",
+    "cpu_utilization_percent": 41.2,
+    "status_check": "passed",
+    "simulated": true
+  },
+  {
+    "resource_type": "lambda_function",
+    "resource_identifier": "checkout-price-calculator",
+    "service": "checkout",
+    "environment": "production",
+    "state": "active",
+    "error_count": 0,
+    "throttle_count": 0,
+    "concurrent_executions": 4,
+    "simulated": true
+  }
+]
