@@ -15,6 +15,31 @@ streamlit run app/client/streamlit_demo.py
 
 Opens at `http://localhost:8501`. The sidebar lets you switch between `demo-incident-commander` and `demo-read-only-operator` and includes a button to open the CloudWatch observability dashboard (Demo 4). It reads terraform outputs and calls AWS with your own `AWS_PROFILE` credentials server-side, so it's a local presenter tool only - it must not be exposed beyond localhost or published as a public link.
 
+## Optional: AWS Console Test UI
+
+The Bedrock AgentCore console's Runtime "Test" tab can invoke the agent directly, but its default `{"prompt": "..."}` example payload doesn't match this handler - `app/agent/main.py::handler` expects `incident_description`/`service`/`environment`/`severity`, plus a `bearer_token` field. That last field exists because AgentCore strips the `Authorization` header (and any other custom header) before a direct invocation reaches the container, so the token has to travel in the JSON body instead - see the docstring on `handler()`.
+
+1. Get a real Cognito access token (valid ~1 hour):
+   ```bash
+   export AWS_PROFILE=mahidevops
+   PASSWORD="$(terraform -chdir=terraform output -json demo_user_passwords | jq -r '."demo-incident-commander"')"
+   PYTHONPATH=. python3 -c "
+   from app.client.auth import get_access_token
+   print(get_access_token(user_id='demo-incident-commander', password='${PASSWORD}', client_id='$(terraform -chdir=terraform output -raw cognito_user_pool_client_id)', region='eu-west-1'))
+   "
+   ```
+2. In the console's Input box, paste (replacing `<TOKEN>`):
+   ```json
+   {
+     "incident_description": "The production checkout service is returning HTTP 5xx errors. Help me investigate using the approved runbook.",
+     "service": "checkout",
+     "environment": "production",
+     "severity": "SEV2",
+     "bearer_token": "<TOKEN>"
+   }
+   ```
+3. Click Run. A payload without `bearer_token` returns `{"refused": true, "refusal_reason": "Missing bearer token."}` rather than a platform-level auth error, since the console's own sign-in already satisfies the Runtime's `custom_jwt_authorizer` - it's this application-level check that still needs the token in the body.
+
 ## Demo 1: Grounded incident investigation
 
 As the incident commander, ask:
